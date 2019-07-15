@@ -1,0 +1,30 @@
+#!/usr/bin/python
+__author__ = "rasitmete"
+
+""" This will take the arguments and parse them, then send it to appropriate class """
+import argparse
+import sys
+import socket
+import time
+from simpleWebCrawler.runner import Runner
+from simpleWebCrawler.http_utility import DEBUG_FLAG
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser(description="Project2 - WebCrawler")
+    parser.add_argument("username", help="NEU-id")
+    parser.add_argument("password", help="The one that is sent via e-mail")
+    args = parser.parse_args()
+
+    hostname = "cs5700f18.ccs.neu.edu" 
+    username = args.username
+    password = args.password
+
+    begin = time.time()
+    runner = Runner(hostname, username, password)
+    runner.run()
+    end = time.time()
+
+    if DEBUG_FLAG: print "\nTIME ELAPSED: " + str(end-begin)
+
+
