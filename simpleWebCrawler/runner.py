@@ -105,10 +105,14 @@ class Runner():
             self._cm.send(pckt)
                 
         if len(Runner.secrets) < 5:
+            """ If not all the secrets are found, repeat the loop until then """
             return True
+
         if len(Runner.queued_links) == 0:
             print "Crawled all pages! Could not find 5 secret!"
             return False
+
+        # When all 5 secrets are found, stop crawling...
         return False
 
     def search_secret(self, body):
